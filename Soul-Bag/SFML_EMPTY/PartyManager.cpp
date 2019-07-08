@@ -18,40 +18,47 @@ void PartyManager::InitCharacters()
 {
 	activePlayerCharacter = new PlayerCharacter();
 
-
+	for (int i = 0; i < partySize - 1; i++) {
+		backupPartyArr[i] = new PlayerCharacter();
+	}
 }
 
 void PartyManager::HandleEvents(sf::RenderWindow & window)
 {
 	sf::Event event;
+	bool activeInput[4];
+
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed)
 			window.close();
 		if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::W)
 				activeInput[0] = true;
-			else
-				activeInput[0] = false;
 			
 			if (event.key.code == sf::Keyboard::A)
 				activeInput[1] = true;
-			else
-				activeInput[1] = false;
 			
 			if (event.key.code == sf::Keyboard::S)
 				activeInput[2] = true;
-			else
-				activeInput[2] = false;
 			
 			if (event.key.code == sf::Keyboard::D)
 				activeInput[3] = true;
-			else
-				activeInput[3] = false;
 		}
 	}
 }
 
-void PartyManager::ManageInput()
+void PartyManager::SwapPlayerCharacter(int)
 {
 
+}
+
+void PartyManager::Update()
+{
+
+}
+
+void PartyManager::ManageInput(bool *activeInput)
+{
+	activePlayerCharacter->inputVector.push_back(activeInput);
+	activePlayerCharacter->Move(activeInput);
 }

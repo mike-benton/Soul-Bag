@@ -4,13 +4,14 @@
 class PlayerCharacter
 {
 public:
-	std::vector<bool[4]> inputVector;
+	std::vector<bool*> inputVector;
 	std::string name;
 	int HP;
 	sf::RectangleShape pMemberRect;
 
 	int inputDelay;
 
+	void Move(bool[]);
 	PlayerCharacter();
 	~PlayerCharacter();
 };
