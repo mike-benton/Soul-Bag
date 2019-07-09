@@ -22,11 +22,11 @@ int main() {
 	while (window.isOpen()) {
 		partyManager.HandleEvents(window);
 		
-
+		
 
 
 		window.clear();
-		//window.draw();
+		window.draw(partyManager.activePlayerCharacter->pMemberRect);
 		window.display();
 	}
 

@@ -9,9 +9,8 @@ public:
 	int HP;
 	sf::RectangleShape pMemberRect;
 
-	int inputDelay;
 
-	void Move(bool[]);
+	void Move(bool*);
 	PlayerCharacter();
 	~PlayerCharacter();
 };

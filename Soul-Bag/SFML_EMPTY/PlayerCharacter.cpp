@@ -1,15 +1,18 @@
 #include "pch.h"
 #include "PlayerCharacter.h"
 
+#include <iostream>
+using namespace std;
 
 
 
 PlayerCharacter::PlayerCharacter()
 {
-
+	pMemberRect.setSize(sf::Vector2f(100, 100));
+	pMemberRect.setPosition(400, 400);
 }
 
-void PlayerCharacter::Move(bool inputArr[])
+void PlayerCharacter::Move(bool *inputArr)
 {
 	if (inputArr[0])
 		pMemberRect.setPosition(pMemberRect.getPosition().x, pMemberRect.getPosition().y - 1);

@@ -13,6 +13,8 @@ public:
 	PlayerCharacter* activePlayerCharacter;
 	PlayerCharacter* backupPartyArr[3];
 
+	int inputDelay;
+	bool activeInput[4];
 
 
 	void SwapPlayerCharacter(int);
