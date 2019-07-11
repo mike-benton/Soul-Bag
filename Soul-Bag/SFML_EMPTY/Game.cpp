@@ -15,8 +15,7 @@ enum GameState {
 };
 
 int main() {
-	PartyManager partyManager;
-	PlayerCharacter pMember;
+	PartyManager partyManager(2);
 	
 	sf::RenderWindow window(sf::VideoMode(1600, 1000), "Soul Bag");
 	while (window.isOpen()) {
@@ -27,6 +26,7 @@ int main() {
 
 		window.clear();
 		window.draw(partyManager.activePlayerCharacter->pMemberRect);
+		window.draw(partyManager.backupPartyArr[0]->pMemberRect);
 		window.display();
 	}
 

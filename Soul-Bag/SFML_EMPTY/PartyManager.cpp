@@ -1,15 +1,18 @@
 #include "pch.h"
 #include "PartyManager.h"
+#include <iostream>
 
 
 PartyManager::PartyManager(int partySize)
 {
+	inputDelay = 1000;
 	this->partySize = partySize;
 	InitCharacters();
 }
 
 PartyManager::PartyManager()
 {
+	inputDelay = 1000;
 	partySize = 1;
 	InitCharacters();
 }
@@ -73,12 +76,13 @@ void PartyManager::Update()
 
 void PartyManager::ManageInput(bool *activeInput)
 {
-	activePlayerCharacter->inputVector.push_back(activeInput);
+	activePlayerCharacter->pushMovementArray(activeInput);
 	activePlayerCharacter->Move(activeInput);
-
+	backupPartyArr[0]->pushMovementArray(activeInput);
+	std::cout << frameCount << std::endl;
 	if (frameCount > inputDelay) {
 		for (int i = 0; i < partySize - 1; i++) {
-			backupPartyArr[i]->Move(backupPartyArr[i]->inputVector[frameCount - inputDelay]);
+			backupPartyArr[i]->Move(backupPartyArr[i]->getMovementArray(frameCount - inputDelay));
 		}
 	}
 
