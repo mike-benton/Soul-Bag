@@ -16,6 +16,7 @@ enum GameState {
 
 int main() {
 	PartyManager partyManager(2);
+	partyManager.activePlayerCharacter->pMemberRect.setFillColor(sf::Color::Green);
 	
 	sf::RenderWindow window(sf::VideoMode(1600, 1000), "Soul Bag");
 	while (window.isOpen()) {
@@ -25,8 +26,8 @@ int main() {
 
 
 		window.clear();
-		window.draw(partyManager.activePlayerCharacter->pMemberRect);
 		window.draw(partyManager.backupPartyArr[0]->pMemberRect);
+		window.draw(partyManager.activePlayerCharacter->pMemberRect);
 		window.display();
 	}
 
@@ -47,7 +48,7 @@ void update() {
 
 /// MISC CODE
 /*
-int gameState = mainGame;
+GameState gameState = mainGame;
 while (window.isOpen()) {
 	switch (gameState) {
 	case title:

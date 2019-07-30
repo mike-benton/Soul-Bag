@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp> 
 #include <vector>
+#include "PlayerCharacter.h"
 using namespace std;
 
-#include "PlayerCharacter.h"
+
 
 class PartyManager
 {
