@@ -46,6 +46,13 @@ void PartyManager::HandleEvents(sf::RenderWindow & window)
 			
 			if (event.key.code == sf::Keyboard::D)
 				activeInput[3] = true;
+
+			if (event.key.code == sf::Keyboard::Tab) {
+				frameCount = 0;
+				for (int i = 0; i < partySize - 1; i++) {
+					backupPartyArr[i]->pMemberRect.setPosition(400, 400);
+				}
+			}
 		}
 		if (event.type == sf::Event::KeyReleased) {
 			if (event.key.code == sf::Keyboard::W)

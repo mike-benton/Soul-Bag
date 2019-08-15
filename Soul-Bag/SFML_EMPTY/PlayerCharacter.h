@@ -3,7 +3,7 @@
 
 struct inputFrame {
 	bool inputArr[4];
-	int frames = 0;
+	int frames = 1;
 
 	bool operator[](int i) const { return inputArr[i]; }
 	bool &operator[](int i) { return inputArr[i]; }
@@ -16,7 +16,6 @@ struct inputFrame {
 class PlayerCharacter
 {
 public:
-	std::vector<std::array<bool, 4>> inputVectorOld;
 	std::vector<inputFrame> inputVector;
 	std::string name;
 	int HP;

@@ -22,15 +22,11 @@ int main() {
 	while (window.isOpen()) {
 		partyManager.HandleEvents(window);
 		
-		
-
-
 		window.clear();
 		window.draw(partyManager.backupPartyArr[0]->pMemberRect);
 		window.draw(partyManager.activePlayerCharacter->pMemberRect);
 		window.display();
 	}
-
 
 	delete partyManager.activePlayerCharacter;
 	for (int i = 0; i < partyManager.partySize; i++) {
