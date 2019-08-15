@@ -6,14 +6,14 @@
 
 PartyManager::PartyManager(int partySize)
 {
-	inputDelay = 500;
+	inputDelay = -1;
 	this->partySize = partySize;
 	InitCharacters();
 }
 
 PartyManager::PartyManager()
 {
-	inputDelay = 500;
+	inputDelay = -1;
 	partySize = 1;
 	InitCharacters();
 }
@@ -21,9 +21,11 @@ PartyManager::PartyManager()
 void PartyManager::InitCharacters()
 {
 	activePlayerCharacter = new PlayerCharacter();
+	activePlayerCharacter->pMemberRect.setPosition(600, 800);
 
 	for (int i = 0; i < partySize - 1; i++) {
 		backupPartyArr[i] = new PlayerCharacter();
+		backupPartyArr[i]->pMemberRect.setPosition(700 + 100 * i, 800);
 	}
 }
 
@@ -50,8 +52,15 @@ void PartyManager::HandleEvents(sf::RenderWindow & window)
 			if (event.key.code == sf::Keyboard::Tab) {
 				frameCount = 0;
 				for (int i = 0; i < partySize - 1; i++) {
-					backupPartyArr[i]->pMemberRect.setPosition(400, 400);
+					//backupPartyArr[i]->pMemberRect.setPosition(400, 400); CHANGE THIS BACK TO STARTING POSITION
 				}
+			}
+
+			if (event.key.code == sf::Keyboard::Num1) {
+				SwapPlayerCharacter(0);
+				frameCount = 0;
+				//consider removing the last inputframe from the vector as it's likely going to be still and so is the first frame anyway
+				continue;
 			}
 		}
 		if (event.type == sf::Event::KeyReleased) {
@@ -72,9 +81,11 @@ void PartyManager::HandleEvents(sf::RenderWindow & window)
 	ManageInput(activeInput);
 }
 
-void PartyManager::SwapPlayerCharacter(int)
+void PartyManager::SwapPlayerCharacter(int playerIndex)
 {
-
+	PlayerCharacter* tempCharacter = activePlayerCharacter;
+	activePlayerCharacter = backupPartyArr[playerIndex];
+	backupPartyArr[playerIndex] = tempCharacter;
 }
 
 void PartyManager::Update()
@@ -86,9 +97,9 @@ void PartyManager::ManageInput(bool *activeInput)
 {
 	activePlayerCharacter->pushMovementArray(activeInput);
 	activePlayerCharacter->Move(activeInput);
-	backupPartyArr[0]->pushMovementArray(activeInput);
+	//backupPartyArr[0]->pushMovementArray(activeInput);
 	//std::cout << frameCount << std::endl;
-	if (frameCount > inputDelay) {
+	if (frameCount > inputDelay) { //right now inputdelay is -1 because i don't know if i want to use it
 		for (int i = 0; i < partySize - 1; i++) {
 			backupPartyArr[i]->Move(backupPartyArr[i]->getMovementArray(frameCount - inputDelay));
 		}

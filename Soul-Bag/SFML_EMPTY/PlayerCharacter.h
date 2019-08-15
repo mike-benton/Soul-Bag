@@ -25,6 +25,7 @@ public:
 	bool* getMovementArray(int);
 
 	void Move(bool*);
+	void Reset();
 	PlayerCharacter();
 	~PlayerCharacter();
 };

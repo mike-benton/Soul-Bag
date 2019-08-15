@@ -19,6 +19,8 @@ int main() {
 	partyManager.activePlayerCharacter->pMemberRect.setFillColor(sf::Color::Green);
 	
 	sf::RenderWindow window(sf::VideoMode(1600, 1000), "Soul Bag");
+	window.setFramerateLimit(144);
+
 	while (window.isOpen()) {
 		partyManager.HandleEvents(window);
 		
